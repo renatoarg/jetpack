@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Jetpack implementation</string>
+
+
+    <string name="home_fragment">Home fragment</string>
+    <string name="other_fragment">Other fragment</string>
+</resources>

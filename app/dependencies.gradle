@@ -1,0 +1,137 @@
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+        mavenCentral()
+    }
+}
+
+ext {
+    def lib = [
+            appCompat             : '1.2.0-alpha02',
+            appCompatResources    : '1.2.0-alpha02',
+            constraintlayout      : '2.0.0-beta4',
+            material              : '1.1.0',
+            navVersionSafeArgs    : '2.1.0-rc01',
+            kotlinVersion         : '1.3.61',
+            androidAnnotations    : '1.1.0',
+            timber                : '4.7.1',
+            koin                  : '2.0.1',
+            koinScope             : '2.0.1',
+            koinViewModel         : '2.0.1',
+            lifeCycleExtensions   : '2.2.0-rc03',
+            lifeCycleCompiler     : '2.2.0-rc03',
+            lifecycleViewmodel    : '2.2.0-rc03',
+            lifecycleLivedata     : '2.2.0-rc03',
+            commonjava8           : '2.2.0-rc03',
+            googleApiClient       : '1.23.0',
+            glide                 : '4.10.0',
+            glideCompiler         : '4.10.0',
+            multidex              : '2.0.1',
+            navigationFragmentKtx : '2.2.0-rc02',
+            navigationUIKtx       : '2.2.0-rc02',
+            navigationResult      : '1.0.0-beta01',
+            threetenabp           : '1.2.1',
+            coreKtx               : '1.1.0',
+            firebasemessaging     : '20.1.0',
+            firebaseAnalytics     : '17.2.2',
+            firebaseAuth          : '19.2.0',
+            firebaseUiAuth        : '4.3.1',
+            firebaseDatabase      : '19.2.1',
+            crashlytics           : '2.9.5@aar',
+            dinamicanimation      : '1.0.0',
+            servicesAuth          : '16.0.1',
+            servicesMaps          : '16.0.0',
+            servicesLocation      : '16.0.0',
+            picasso               : '2.71828',
+            materialDialogs       : '3.3.0',
+            easyPermissions       : '3.0.0'
+    ]
+    versions = [
+            minSdk    : 22,
+            targetSdk : 29,
+            compileSdk: 29,
+            buildTools: '29.0.2'
+    ]
+
+
+    def debug = [
+            debugDb   : '1.0.6',
+            leakCanary: '2.0-beta-3'
+    ]
+
+    def test = [
+            androidAnnotations: '1.1.0',
+            jUnit             : '4.12',
+            mockitoAndroid    : '2.25.1',
+            espressoCore      : '3.2.0',
+            espressoIntents   : '3.2.0',
+            androidTestExt    : '1.1.1',
+            rules             : '1.2.0',
+            androidRunner     : '1.2.0'
+    ]
+
+    deps = [
+            lib  : [
+                    appCompat             : "androidx.appcompat:appcompat:${lib.appCompat}",
+                    appCompatResources    : "androidx.appcompat:appcompat-resources:${lib.appCompatResources}",
+                    constraintlayout      : "androidx.constraintlayout:constraintlayout:${lib.constraintlayout}",
+                    material              : "com.google.android.material:material:${lib.material}",
+                    kotlinVersion         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${lib.kotlinVersion}",
+                    androidAnnotations    : "androidx.annotation:annotation:${lib.androidAnnotations}",
+                    timber                : "com.jakewharton.timber:timber:${lib.timber}",
+                    koin                  : "org.koin:koin-android:${lib.koin}",
+                    koinScope             : "org.koin:koin-androidx-scope:${lib.koinScope}",
+                    koinViewModel         : "org.koin:koin-androidx-viewmodel:${lib.koinViewModel}",
+                    coreKtx               : "androidx.core:core-ktx:${lib.coreKtx}",
+                    lifecycleViewmodel    : "androidx.lifecycle:lifecycle-viewmodel-ktx:${lib.lifecycleViewmodel}",
+                    lifecycleLivedata     : "androidx.lifecycle:lifecycle-livedata-ktx:${lib.lifecycleLivedata}",
+                    lifeCycleExtensions   : "androidx.lifecycle:lifecycle-extensions:${lib.lifeCycleExtensions}",
+                    lifeCycleCompiler     : "androidx.lifecycle:lifecycle-compiler:${lib.lifeCycleCompiler}",
+                    commonjava8           : "androidx.lifecycle:lifecycle-common-java8:${lib.commonjava8}",
+                    glide                 : "com.github.bumptech.glide:glide:${lib.glide}",
+                    glideCompiler         : "com.github.bumptech.glide:compiler:${lib.glideCompiler}",
+                    multidex              : "androidx.multidex:multidex:${lib.multidex}",
+                    navigationFragmentKtx : "androidx.navigation:navigation-fragment-ktx:${lib.navigationFragmentKtx}",
+                    navigationUIKtx       : "androidx.navigation:navigation-ui-ktx:${lib.navigationUIKtx}",
+                    navigationResult      : "com.phelat:navigationresult:${lib.navigationResult}",
+                    threetenabp           : "com.jakewharton.threetenabp:threetenabp:${lib.threetenabp}",
+                    firebasemessaging     : "com.google.firebase:firebase-messaging:${lib.firebasemessaging}",
+                    firebaseAnalytics     : "com.google.firebase:firebase-analytics:${lib.firebaseAnalytics}",
+                    firebaseAuth          : "com.google.firebase:firebase-auth:${lib.firebaseAuth}",
+                    firebaseUiAuth        : "com.firebaseui:firebase-ui-auth:${lib.firebaseUiAuth}",
+                    firebaseDatabase      : "com.google.firebase:firebase-database:${lib.firebaseDatabase}",
+                    crashlytics           : "com.crashlytics.sdk.android:crashlytics:${lib.crashlytics}",
+                    dinamicanimation      : "androidx.dynamicanimation:dynamicanimation:${lib.dinamicanimation}",
+                    servicesAuth          : "com.google.android.gms:play-services-auth:${lib.servicesAuth}",
+                    servicesMaps          : "com.google.android.gms:play-services-maps:${lib.servicesMaps}",
+                    servicesLocation      : "com.google.android.gms:play-services-location:${lib.servicesLocation}",
+                    googleApiClient       : "com.google.api-client:google-api-client-android:${lib.googleApiClient}",
+                    picasso               : "com.squareup.picasso:picasso:${lib.picasso}",
+                    materialedittext      : "com.rengwuxian.materialedittext:${lib.materialedittext}",
+                    materialratingbar     : "me.zhanghai.android.materialratingbar:${lib.materialratingbar}",
+                    materialDialogs       : "com.afollestad.material-dialogs:core:${lib.materialDialogs}",
+                    easyPermissions       : "pub.devrel:easypermissions:${lib.easyPermissions}"
+            ],
+
+            test : [
+                    androidAnnotations: "androidx.annotation:annotation:${test.androidAnnotations}",
+                    jUnit             : "junit:junit:${test.jUnit}",
+                    mockitoAndroid    : "org.mockito:mockito-android:${test.mockitoAndroid}",
+                    androidRunner     : "androidx.test:runner:${test.androidRunner}",
+                    rules             : "androidx.test:rules:${test.rules}",
+                    espressoCore      : "androidx.test.espresso:espresso-core:${test.espressoCore}",
+                    espressoIntents   : "androidx.test.espresso:espresso-intents:${test.espressoIntents}",
+                    espressoContrib   : "androidx.test.espresso:espresso-contrib:${test.espressoContrib}",
+                    androidTestExt    : "androidx.test.ext:junit:${test.androidTestExt}"
+            ],
+
+            debug: [
+                    debugDb   : "com.amitshekhar.android:debug-db:${debug.debugDb}",
+                    leakCanary: "com.squareup.leakcanary:leakcanary-android:${debug.leakCanary}"
+            ]
+    ]
+
+}
