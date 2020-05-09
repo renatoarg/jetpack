@@ -27,8 +27,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             handleHomeState(homeState)
         })
 
-        homeText.setOnClickListener {
-            viewModel.doFakeRequest()
+        navigate.setOnClickListener {
+            viewModel.navigate()
+        }
+
+        request.setOnClickListener {
+            viewModel.getUsers()
         }
     }
 
@@ -36,8 +40,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         Timber.d("HomeState: $homeState")
         when(homeState) {
             is HomeState.Init -> setupForInit()
-            is HomeState.FakeRequest -> navigateToOther()
+            is HomeState.Navigate -> navigateToOther()
+            is HomeState.UsersLoaded -> setupForUsersLoaded()
         }
+    }
+
+    private fun setupForUsersLoaded() {
+        Toast.makeText(requireContext(), "Users loaded", Toast.LENGTH_LONG).show()
     }
 
     private fun navigateToOther() {

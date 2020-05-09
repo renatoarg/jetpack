@@ -6,6 +6,8 @@ sealed class HomeState {
 
     object Loading: HomeState()
 
-    object FakeRequest: HomeState()
+    object UsersLoaded : HomeState()
+
+    object Navigate : HomeState()
 
 }

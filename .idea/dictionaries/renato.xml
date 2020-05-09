@@ -2,7 +2,9 @@
   <dictionary name="renato">
     <words>
       <w>koin</w>
+      <w>okhttp</w>
       <w>renatoarg</w>
+      <w>reqres</w>
       <w>viewmodel</w>
     </words>
   </dictionary>

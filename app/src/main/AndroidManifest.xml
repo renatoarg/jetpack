@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.renatoarg">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name="br.com.renatoarg.AppApplication"
         android:allowBackup="true"
