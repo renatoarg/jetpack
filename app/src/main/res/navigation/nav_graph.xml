@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/otherFragment"
-        android:name="br.com.renatoarg.ui.other.OtherFragment"
+        android:name="br.com.renatoarg.ui.other.UserDetailFragment"
         android:label="fragment_other"
-        tools:layout="@layout/fragment_other" />
+        tools:layout="@layout/fragment_user_detail" />
 </navigation>

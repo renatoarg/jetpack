@@ -5,28 +5,15 @@
     android:layout_height="match_parent"
     tools:context="br.com.renatoarg.ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/navigate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
-        android:gravity="center"
-        android:text="@string/click_to_navigate"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/users"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/request"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:gravity="center"
-        android:text="@string/click_to_http_request"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/navigate" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_user"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

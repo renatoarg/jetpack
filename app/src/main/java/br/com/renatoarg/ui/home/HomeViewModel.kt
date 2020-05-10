@@ -1,10 +1,10 @@
 package br.com.renatoarg.ui.home
 
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.widget.ImageView
+import androidx.lifecycle.*
 import br.com.renatoarg.model.ReqresRepository
+import br.com.renatoarg.model.pojo.User
+import kotlinx.coroutines.Dispatchers
 
 class HomeViewModel(private val repository: ReqresRepository) : ViewModel(), LifecycleObserver {
 
@@ -16,22 +16,18 @@ class HomeViewModel(private val repository: ReqresRepository) : ViewModel(), Lif
         }
     }
 
-    fun init() {
-        homeLiveData.value = HomeState.Init
-    }
-
     fun getState() : LiveData<HomeState> {
         return homeLiveData
     }
 
-    fun getUsers() {
-        repository.getUsers()
-        homeLiveData.value = HomeState.UsersLoaded
+    fun getUsers() = liveData(Dispatchers.IO) {
+        val response = repository.getUsers()
+        emit(HomeState.UsersLoaded(response.data))
     }
 
-    fun navigate() {
-        homeLiveData.value = HomeState.Navigate
-        homeLiveData.value = HomeState.Loading
+    fun selectUser(user: User, photo: ImageView) {
+        homeLiveData.value = HomeState.NavigateToUserDetail(photo)
+        homeLiveData.value = HomeState.SelectUser(user)
     }
 
 }

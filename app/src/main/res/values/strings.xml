@@ -6,4 +6,9 @@
     <string name="other_fragment">Other fragment</string>
     <string name="click_to_navigate">Click to navigate</string>
     <string name="click_to_http_request">Click to http request</string>
+    <string name="user_name">%s %s</string>
+    <string name="email">Email</string>
+    <string name="firstName">First name</string>
+    <string name="lastName">Last name</string>
+    <string name="change">Change</string>
 </resources>
