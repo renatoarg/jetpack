@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.renatoarg.model.ReqresRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class HomeViewModel(private val repository: ReqresRepository) : ViewModel(), LifecycleObserver {
 
@@ -20,13 +22,21 @@ class HomeViewModel(private val repository: ReqresRepository) : ViewModel(), Lif
         homeLiveData.value = HomeState.Init
     }
 
-    fun getState() : LiveData<HomeState> {
+    fun getState(): LiveData<HomeState> {
         return homeLiveData
     }
 
     fun getUsers() {
-        repository.getUsers()
-        homeLiveData.value = HomeState.UsersLoaded
+        var disposible = repository.getUsers()
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                it?.let { usersListResponse ->
+                    usersListResponse.data.run {
+                        homeLiveData.value = HomeState.UsersLoaded(this)
+                    }
+                }
+            }
     }
 
     fun navigate() {

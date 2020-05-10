@@ -68,6 +68,20 @@ dependencies {
     // retrofit
     def retrofit_version = "2.6.2"
     def retrofit_converter_gson_version = "2.6.2"
+    def retrofit_adapter_version = "2.6.2"
     implementation "com.squareup.retrofit2:retrofit:${retrofit_version}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit_converter_gson_version}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofit_adapter_version}"
+
+    // rxjava
+    def rxkotlin_version = "2.3.0"
+    def rxandroid_version = "2.1.1"
+    def rxjava_version = "2.2.15"
+    implementation "io.reactivex.rxjava2:rxkotlin:${rxkotlin_version}"
+    implementation "io.reactivex.rxjava2:rxandroid:${rxandroid_version}"
+    implementation "io.reactivex.rxjava2:rxjava:${rxjava_version}"
+
+    // glide
+    def glide_version = "4.11.0"
+    implementation "com.github.bumptech.glide:glide:${glide_version}"
 }

@@ -2,7 +2,9 @@ package br.com.renatoarg.model
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.CallAdapter
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -24,6 +26,7 @@ class ReqresClient {
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://reqres.in/")
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(client.build()).build()
             return retrofit.create(ReqresApi::class.java)
         }
