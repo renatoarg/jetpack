@@ -1,19 +1,16 @@
 package br.com.renatoarg.ui.home
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import br.com.renatoarg.R
 import br.com.renatoarg.model.pojo.User
 import br.com.renatoarg.ui.home.adapter.UsersListAdapter
 import br.com.renatoarg.ui.home.adapter.viewholder.UsersListInterface
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.item_user.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
 
@@ -23,12 +20,7 @@ import timber.log.Timber
 class HomeFragment : Fragment(R.layout.fragment_home), UsersListInterface {
 
     private val viewModel: HomeViewModel by sharedViewModel()
-    private lateinit var usersListAdapter : UsersListAdapter
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        usersListAdapter = UsersListAdapter(context, emptyList(), this)
-    }
+    private val usersListAdapter : UsersListAdapter = UsersListAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,7 +40,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), UsersListInterface {
     }
 
     private fun setupForUsersLoaded(usersList: List<User>) {
-        usersListAdapter.updateUsers(usersList)
+        usersListAdapter.submitList(usersList)
     }
 
     private fun setupForInit() {
