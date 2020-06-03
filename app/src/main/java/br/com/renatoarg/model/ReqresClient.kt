@@ -1,5 +1,7 @@
 package br.com.renatoarg.model
 
+import br.com.renatoarg.BuildConfig
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,6 +16,10 @@ class ReqresClient {
                 .readTimeout(1, TimeUnit.MINUTES)
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(1, TimeUnit.MINUTES)
+
+            if (BuildConfig.DEBUG) {
+                client.addNetworkInterceptor(StethoInterceptor())
+            }
 
             // OkHttp logger
             val logger = HttpLoggingInterceptor()
