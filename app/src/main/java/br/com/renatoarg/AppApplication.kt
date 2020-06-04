@@ -2,7 +2,8 @@ package br.com.renatoarg
 
 import android.app.Application
 import br.com.renatoarg.commons.homeModule
-import com.facebook.stetho.Stetho
+import br.com.renatoarg.data.di.DataModule
+import br.com.renatoarg.domain.DomainModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -19,14 +20,12 @@ class AppApplication : Application() {
         startKoin {
             androidContext(this@AppApplication)
             modules(homeModule)
+            loadModules()
         }
-
-        initializeStetho()
     }
 
-    private fun initializeStetho() {
-        if (BuildConfig.DEBUG) {
-            Stetho.initializeWithDefaults(this)
-        }
+    fun loadModules() {
+        DataModule.loadModule()
+        DomainModule.loadModule()
     }
 }
