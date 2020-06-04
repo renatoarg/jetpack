@@ -1,0 +1,13 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // koin
+    def koin_version = "2.0.1"
+    implementation "org.koin:koin-android:${koin_version}"
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"

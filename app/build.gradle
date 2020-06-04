@@ -31,6 +31,10 @@ android {
 }
 
 dependencies {
+
+    implementation project(path: ':data')
+    implementation project(path: ':domain')
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -58,18 +62,6 @@ dependencies {
     def navigation_version = "2.2.2"
     implementation "androidx.navigation:navigation-fragment-ktx:${navigation_version}"
     implementation "androidx.navigation:navigation-ui-ktx:${navigation_version}"
-
-    // OkHttp
-    def okhttp_version = "2.6.0"
-    def okhttp_logger_version = "3.12.0"
-    implementation "com.squareup.okhttp:okhttp:${okhttp_version}"
-    implementation "com.squareup.okhttp3:logging-interceptor:${okhttp_logger_version}"
-
-    // retrofit
-    def retrofit_version = "2.6.2"
-    def retrofit_converter_gson_version = "2.6.2"
-    implementation "com.squareup.retrofit2:retrofit:${retrofit_version}"
-    implementation "com.squareup.retrofit2:converter-gson:${retrofit_converter_gson_version}"
 
     // glide
     def glide_version = "4.11.0"

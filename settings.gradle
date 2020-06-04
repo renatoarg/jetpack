@@ -1,2 +1,2 @@
+include ':app', ':data', ':domain'
 rootProject.name='Jetpack Implementation'
-include ':app'

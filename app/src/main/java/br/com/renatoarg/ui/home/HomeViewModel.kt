@@ -1,12 +1,12 @@
 package br.com.renatoarg.ui.home
 
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import br.com.renatoarg.model.ReqresRepository
+import androidx.lifecycle.*
+import br.com.renatoarg.domain.interactor.ListUserUseCase
+import kotlinx.coroutines.launch
 
-class HomeViewModel(private val repository: ReqresRepository) : ViewModel(), LifecycleObserver {
+class HomeViewModel(
+    private val listUserUseCase: ListUserUseCase
+) : ViewModel(), LifecycleObserver {
 
     private val homeLiveData = MutableLiveData<HomeState>()
 
@@ -25,13 +25,18 @@ class HomeViewModel(private val repository: ReqresRepository) : ViewModel(), Lif
     }
 
     fun getUsers() {
-        repository.getUsers()
-        homeLiveData.value = HomeState.UsersLoaded
+        viewModelScope.launch {
+            try {
+                val users = listUserUseCase.execute()
+                homeLiveData.postValue(HomeState.UsersLoaded(users))
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
     fun navigate() {
         homeLiveData.value = HomeState.Navigate
         homeLiveData.value = HomeState.Loading
     }
-
 }

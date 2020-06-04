@@ -1,12 +1,11 @@
 package br.com.renatoarg.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-
 import br.com.renatoarg.R
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -57,6 +56,4 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun setupForInit() {
         Toast.makeText(requireContext(), "Init", Toast.LENGTH_LONG).show()
     }
-
-
 }
