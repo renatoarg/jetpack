@@ -4,12 +4,12 @@ import br.com.renatoarg.domain.model.User
 import br.com.renatoarg.domain.repository.IReqresRepository
 import br.com.renatoarg.domain.repository.Resource
 
-class ListUserUseCase constructor(
+class GetUserUseCase constructor(
     private val repository: IReqresRepository
 ) {
-    private var countPage = 1
+    private var userId = 23L
 
-    suspend fun execute(): Resource<Exception, List<User>> {
-        return repository.getUsersData(countPage++)
+    suspend fun execute(): Resource<Exception, User> {
+        return repository.getUser(userId)
     }
 }

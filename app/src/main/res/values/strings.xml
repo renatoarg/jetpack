@@ -6,4 +6,7 @@
     <string name="other_fragment">Other fragment</string>
     <string name="click_to_navigate">Click to navigate</string>
     <string name="click_to_http_request">Click to http request</string>
+    <string name="get_user_not_found">Get User Not Found</string>
+    <string name="register_user">Register User</string>
+    <string name="register_user_with_error">Register Error</string>
 </resources>
