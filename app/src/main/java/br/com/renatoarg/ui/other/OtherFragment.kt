@@ -8,13 +8,15 @@ import androidx.lifecycle.Observer
 import br.com.renatoarg.R
 import br.com.renatoarg.ui.home.HomeState
 import br.com.renatoarg.ui.home.HomeViewModel
+import br.com.renatoarg.ui.widget.WidgetInterface
+import kotlinx.android.synthetic.main.fragment_other.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
  */
-class OtherFragment : Fragment(R.layout.fragment_other) {
+class OtherFragment : Fragment(R.layout.fragment_other), WidgetInterface {
 
     private val viewModel: HomeViewModel by sharedViewModel()
 
@@ -24,6 +26,10 @@ class OtherFragment : Fragment(R.layout.fragment_other) {
         viewModel.getState().observe(viewLifecycleOwner, Observer {homeState ->
             handleHomeState(homeState)
         })
+
+        widged_other.setFragment(this)
+        widged_other.showButton2()
+        widged_other.showButton3()
     }
 
     private fun handleHomeState(homeState: HomeState) {
@@ -40,6 +46,18 @@ class OtherFragment : Fragment(R.layout.fragment_other) {
 
     private fun setupForInit() {
         Toast.makeText(requireContext(), "Init", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onButton1Clicked() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onButton2Clicked() {
+        Toast.makeText(requireContext(), "Button 2 clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onButton3Clicked() {
+        Toast.makeText(requireContext(), "Button 3 clicked", Toast.LENGTH_SHORT).show()
     }
 
 }

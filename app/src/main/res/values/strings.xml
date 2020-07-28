@@ -6,4 +6,9 @@
     <string name="other_fragment">Other fragment</string>
     <string name="click_to_navigate">Click to navigate</string>
     <string name="click_to_http_request">Click to http request</string>
+    <string name="widgetTitle">Title</string>
+    <string name="widgetContent">Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</string>
+    <string name="button1">Button 1</string>
+    <string name="button2">Button 2</string>
+    <string name="button3">Button 3</string>
 </resources>
