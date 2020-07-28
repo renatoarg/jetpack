@@ -1,14 +1,14 @@
 package br.com.renatoarg.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-
 import br.com.renatoarg.R
-import br.com.renatoarg.ui.widget.WidgetInterface
+import br.com.renatoarg.ui.widget.WidgetButton1CallBack
+import br.com.renatoarg.ui.widget.WidgetButton1CallBackAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
@@ -16,7 +16,7 @@ import timber.log.Timber
 /**
  * A simple [Fragment] subclass.
  */
-class HomeFragment : Fragment(R.layout.fragment_home), WidgetInterface {
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by sharedViewModel()
 
@@ -24,7 +24,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), WidgetInterface {
         super.onViewCreated(view, savedInstanceState)
         Timber.d("onViewCreated:")
 
-        viewModel.getState().observe(viewLifecycleOwner, Observer{homeState ->
+        viewModel.getState().observe(viewLifecycleOwner, Observer { homeState ->
             handleHomeState(homeState)
         })
 
@@ -36,13 +36,17 @@ class HomeFragment : Fragment(R.layout.fragment_home), WidgetInterface {
             viewModel.getUsers()
         }
 
-        widged.setFragment(this)
+        widged.addButton1CallBack(WidgetButton1CallBackAdapter(object : WidgetButton1CallBack {
+            override fun onButton1Clicked() {
+                Toast.makeText(requireContext(), "Button 1 clicked", Toast.LENGTH_SHORT).show()
+            }
+        }))
         widged.showButton1()
     }
 
     private fun handleHomeState(homeState: HomeState) {
         Timber.d("HomeState: $homeState")
-        when(homeState) {
+        when (homeState) {
             is HomeState.Init -> setupForInit()
             is HomeState.Navigate -> navigateToOther()
             is HomeState.UsersLoaded -> setupForUsersLoaded()
@@ -61,18 +65,4 @@ class HomeFragment : Fragment(R.layout.fragment_home), WidgetInterface {
     private fun setupForInit() {
         Toast.makeText(requireContext(), "Init", Toast.LENGTH_LONG).show()
     }
-
-    override fun onButton1Clicked() {
-        Toast.makeText(requireContext(), "Button 1 clicked", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onButton2Clicked() {
-        TODO("Not yet implemented")
-    }
-
-    override fun onButton3Clicked() {
-        TODO("Not yet implemented")
-    }
-
-
 }

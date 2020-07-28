@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import br.com.renatoarg.R
 import br.com.renatoarg.ui.home.HomeState
 import br.com.renatoarg.ui.home.HomeViewModel
-import br.com.renatoarg.ui.widget.WidgetInterface
+import br.com.renatoarg.ui.widget.*
 import kotlinx.android.synthetic.main.fragment_other.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
@@ -23,18 +23,28 @@ class OtherFragment : Fragment(R.layout.fragment_other), WidgetInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getState().observe(viewLifecycleOwner, Observer {homeState ->
+        viewModel.getState().observe(viewLifecycleOwner, Observer { homeState ->
             handleHomeState(homeState)
         })
-
-        widged_other.setFragment(this)
+        widged_other.addButton2CallBack(WidgetButton2CallBackAdapter(object :
+            WidgetButton2CallBack {
+            override fun onButton2Clicked() {
+                Toast.makeText(requireContext(), "Button 2 clicked", Toast.LENGTH_SHORT).show()
+            }
+        }))
+        widged_other.addButton3CallBack(WidgetButton3CallBackAdapter(object :
+            WidgetButton3CallBack {
+            override fun onButton3Clicked() {
+                Toast.makeText(requireContext(), "Button 3 clicked", Toast.LENGTH_SHORT).show()
+            }
+        }))
         widged_other.showButton2()
         widged_other.showButton3()
     }
 
     private fun handleHomeState(homeState: HomeState) {
         Timber.d("HomeState: $homeState")
-        when(homeState) {
+        when (homeState) {
             is HomeState.Init -> setupForInit()
             is HomeState.Loading -> setupForLoading()
         }

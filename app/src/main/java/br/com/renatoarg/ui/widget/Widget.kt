@@ -5,16 +5,15 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.Fragment
 import br.com.renatoarg.R
-import br.com.renatoarg.ui.home.HomeFragment
-import br.com.renatoarg.ui.other.OtherFragment
 import kotlinx.android.synthetic.main.widget.view.*
 import timber.log.Timber
 
 class Widget : ConstraintLayout {
 
-    private lateinit var widgetInterface: WidgetInterface
+    private lateinit var callBackAdapter1: WidgetButton1CallBackAdapter
+    private lateinit var callBackAdapter2: WidgetButton2CallBackAdapter
+    private lateinit var callBackAdapter3: WidgetButton3CallBackAdapter
 
     constructor(context: Context) : super(context) {
         bind(context)
@@ -38,21 +37,19 @@ class Widget : ConstraintLayout {
         inflater.inflate(R.layout.widget, this)
 
         button1.setOnClickListener {
-            widgetInterface.onButton1Clicked()
+            if (this::callBackAdapter1.isInitialized) {
+                callBackAdapter1.onButton1Clicked()
+            }
         }
         button2.setOnClickListener {
-            widgetInterface.onButton2Clicked()
+            if (this::callBackAdapter2.isInitialized) {
+                callBackAdapter2.onButton2Clicked()
+            }
         }
         button3.setOnClickListener {
-            widgetInterface.onButton3Clicked()
-        }
-    }
-
-    fun setFragment(fragment: Fragment) {
-        if(fragment is OtherFragment) {
-            widgetInterface = fragment as OtherFragment
-        } else if(fragment is HomeFragment) {
-            widgetInterface = fragment as HomeFragment
+            if (this::callBackAdapter3.isInitialized) {
+                callBackAdapter3.onButton3Clicked()
+            }
         }
     }
 
@@ -66,5 +63,17 @@ class Widget : ConstraintLayout {
 
     fun showButton3() {
         button3.visibility = View.VISIBLE
+    }
+
+    fun addButton1CallBack(widgetButton1CallBackAdapter: WidgetButton1CallBackAdapter) {
+        callBackAdapter1 = widgetButton1CallBackAdapter
+    }
+
+    fun addButton2CallBack(widgetButton2CallBackAdapter: WidgetButton2CallBackAdapter) {
+        callBackAdapter2 = widgetButton2CallBackAdapter
+    }
+
+    fun addButton3CallBack(widgetButton3CallBackAdapter: WidgetButton3CallBackAdapter) {
+        callBackAdapter3 = widgetButton3CallBackAdapter
     }
 }
