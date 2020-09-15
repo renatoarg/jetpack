@@ -6,4 +6,7 @@
     <string name="other_fragment">Other fragment</string>
     <string name="click_to_navigate">Click to navigate</string>
     <string name="click_to_http_request">Click to http request</string>
+    <string name="name">Nome</string>
+    <string name="save">Save</string>
+    <string name="navigate">Navegar</string>
 </resources>

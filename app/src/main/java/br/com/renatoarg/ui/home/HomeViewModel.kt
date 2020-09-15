@@ -1,12 +1,15 @@
 package br.com.renatoarg.ui.home
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.renatoarg.model.ReqresRepository
 
-class HomeViewModel(private val repository: ReqresRepository) : ViewModel(), LifecycleObserver {
+class HomeViewModel @ViewModelInject constructor(
+    private val repository: ReqresRepository
+) : ViewModel(), LifecycleObserver {
 
     private val homeLiveData = MutableLiveData<HomeState>()
 
@@ -20,7 +23,7 @@ class HomeViewModel(private val repository: ReqresRepository) : ViewModel(), Lif
         homeLiveData.value = HomeState.Init
     }
 
-    fun getState() : LiveData<HomeState> {
+    fun getState(): LiveData<HomeState> {
         return homeLiveData
     }
 

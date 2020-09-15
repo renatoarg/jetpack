@@ -1,11 +1,10 @@
 package br.com.renatoarg
 
 import android.app.Application
-import br.com.renatoarg.commons.homeModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
+@HiltAndroidApp
 class AppApplication : Application() {
 
     override fun onCreate() {
@@ -14,10 +13,5 @@ class AppApplication : Application() {
         // setup timber
         Timber.plant(Timber.DebugTree())
 
-        // setup koin
-        startKoin {
-            androidContext(this@AppApplication)
-            modules(homeModule)
-        }
     }
 }

@@ -1,44 +1,50 @@
 package br.com.renatoarg.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-
 import br.com.renatoarg.R
+import br.com.renatoarg.commons.PreferencesHelper
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
  */
+@AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    private val viewModel: HomeViewModel by sharedViewModel()
+    private val viewModel: HomeViewModel by activityViewModels()
+
+    @Inject
+    lateinit var preferences: PreferencesHelper
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Timber.d("onViewCreated:")
 
-        viewModel.getState().observe(viewLifecycleOwner, Observer{homeState ->
+        viewModel.getState().observe(viewLifecycleOwner, Observer { homeState ->
             handleHomeState(homeState)
         })
 
-        navigate.setOnClickListener {
-            viewModel.navigate()
+        save.setOnClickListener {
+            preferences.set("name", name.text.toString())
         }
 
-        request.setOnClickListener {
-            viewModel.getUsers()
+        navigate.setOnClickListener {
+            viewModel.navigate()
         }
     }
 
     private fun handleHomeState(homeState: HomeState) {
         Timber.d("HomeState: $homeState")
-        when(homeState) {
+        when (homeState) {
             is HomeState.Init -> setupForInit()
             is HomeState.Navigate -> navigateToOther()
             is HomeState.UsersLoaded -> setupForUsersLoaded()
