@@ -4,19 +4,21 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import br.com.renatoarg.R
 import br.com.renatoarg.ui.home.HomeState
 import br.com.renatoarg.ui.home.HomeViewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
  */
+@AndroidEntryPoint
 class OtherFragment : Fragment(R.layout.fragment_other) {
 
-    private val viewModel: HomeViewModel by sharedViewModel()
+    private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

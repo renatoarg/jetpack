@@ -1,10 +1,12 @@
-package br.com.renatoarg.data.cloud
+package br.com.renatoarg.data.repository
 
+import br.com.renatoarg.data.cloud.ReqresCloud
 import br.com.renatoarg.data.mappers.ResponseListToUserMapper
 import br.com.renatoarg.domain.model.User
 import br.com.renatoarg.domain.repository.IReqresRepository
+import javax.inject.Inject
 
-class ReqresRepositoryData(
+class ReqresRepository @Inject constructor(
     private val cloud: ReqresCloud
 ) : IReqresRepository {
 

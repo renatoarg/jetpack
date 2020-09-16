@@ -1,10 +1,11 @@
 package br.com.renatoarg.ui.home
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import br.com.renatoarg.domain.interactor.ListUserUseCase
 import kotlinx.coroutines.launch
 
-class HomeViewModel(
+class HomeViewModel @ViewModelInject constructor(
     private val listUserUseCase: ListUserUseCase
 ) : ViewModel(), LifecycleObserver {
 
