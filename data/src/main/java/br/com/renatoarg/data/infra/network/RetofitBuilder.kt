@@ -1,23 +1,20 @@
 package br.com.renatoarg.data.infra.network
 
-import br.com.renatoarg.data.infra.interceptors.HttpLogger
+import br.com.renatoarg.data.API_DATE_FORMAT
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
-class RetrofitBuilder {
-    fun <T> buildRetrofit(apiClass: Class<T>, baseUrl: String) : T {
-        val client = OkHttpClient.Builder()
-            .readTimeout(1, TimeUnit.MINUTES)
-            .connectTimeout(10, TimeUnit.SECONDS)
-            .writeTimeout(1, TimeUnit.MINUTES)
-
-        client.addInterceptor(HttpLogger.getHttpLogger())
-
+object RetrofitBuilder {
+    private val gson = GsonBuilder()
+        .serializeNulls()
+        .setDateFormat(API_DATE_FORMAT)
+        .create()
+    fun <T> buildRetrofit(apiClass: Class<T>, baseUrl: String, client: OkHttpClient.Builder) : T {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .client(client.build())
             .build()
             .create(apiClass)
